@@ -1,4 +1,5 @@
 #include <string>
+#include <iostream>
 #include <vector>
 
 using namespace std;
@@ -23,10 +24,13 @@ int main()
 vector<int> solution(vector<int> array, vector<vector<int>> commands) {
     vector<int> answer;
 
-
-
-
-
+    for(auto it = commands.begin(); it != commands.end(); it++)
+    {
+        for(auto iter = it->begin(); iter != it->end(); iter++)
+        {
+            cout << *iter << endl;
+        }
+    }
 
 
     return answer;
