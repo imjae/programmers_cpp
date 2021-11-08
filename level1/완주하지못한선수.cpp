@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <string>
 #include <vector>
+#include <map>
 
 using namespace std;
 
@@ -26,42 +27,42 @@ int main()
 
 string solution(vector<string> participant, vector<string> completion)
 {
-    string answer = "";
+    string result;
 
-    vector<string>::iterator it;
+    map<string, int> participantMap;
 
-    for (it = participant.begin(); it != participant.end(); )
+    for (auto it = participant.begin(); it != participant.end(); it++)
     {
-        if (FindString(completion, *it))
+        if (participantMap.find(*it) == participantMap.end())
         {
-            it = participant.erase(it);
+            participantMap.insert({*it, 1});
         }
-        else {
-            it++;
+        else
+        {
+            participantMap[*it] = participantMap[*it] + 1;
         }
     }
 
-    for_each(participant.begin(), participant.end(), [&](string &n)
+    for (auto it = completion.begin(); it != completion.end(); it++)
     {
-        cout << n << endl;        //output : 1 2 3 4 });
-    });
-
-    return answer;
-}
-
-bool FindString(vector<string> v, string targetStr)
-{
-    bool result;
-
-    for (int i = 0; i < v.size(); i++)
-    {
-        if (targetStr.compare(v[i]) == 0)
+        if (participantMap.find(*it) != participantMap.end())
         {
-            cout << "찾았다! : " << targetStr << endl;
-            return true;
+            // cout << "찾았다 : " << *it << endl;
+            participantMap[*it] -= 1;
         }
     }
-    return false;
+
+    for (auto it = participantMap.begin(); it != participantMap.end(); it++)
+    {
+        if (participantMap[it->first] > 0)
+        {
+            result = it->first;
+        }
+    }
+
+    // cout << result << endl;
+
+    return result;
 }
 
 // 완주하지 못한 선수
