@@ -5,6 +5,7 @@
 
 using namespace std;
 int GetMin(vector<int> target);
+int GetMax(vector<int> target);
 
 int main()
 {
@@ -19,24 +20,36 @@ int main()
     vector<int> d(n);
     for (int i = 0; i < n; i++)
     {
-        int len = g[i].size();
-        int smallest = g[i][0];
-
-        for (int j = 1; j < len; j++)
-        {
-            smallest = min(smallest, g[i][j]);
-        }
-        d.push_back(smallest);
+        d.push_back(GetMin(g[i]));
     }
 
-    int len = d.size();
-    int largest = d[0];
-    for (int i = 1; i < len; i++)
-    {
-        largest = max(largest, d[i]);
-    }
-
-    cout << largest;
+    cout << GetMax(d);
 
     return 0;
+}
+
+int GetMin(vector<int> target)
+{
+    int len = target.size();
+    int smallest = target[0];
+
+    for(int i=1; i<len; i++)
+    {
+        smallest = min(smallest, target[i]);
+    }
+
+    return smallest;
+}
+
+int GetMax(vector<int> target)
+{
+    int len = target.size();
+    int largest = target[0];
+
+    for(int i=1; i<len; i++)
+    {
+        largest = max(largest, target[i]);
+    }
+
+    return largest;
 }
