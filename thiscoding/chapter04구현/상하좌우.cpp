@@ -8,40 +8,44 @@ using namespace std;
 
 vector<string> split(string s, string divid);
 
+int n;
+string plans;
+int x = 1, y = 1;
+
+char moveTypes[4] = {'L', 'R', 'U', 'D'};
+int dx[4] = {0, 0, -1, 1};
+int dy[4] = {-1, 1, 0, 0};
+
 int main()
 {
-    int n = 5;
-
-
-    int x = 1, y = 1;
-
     cin >> n;
     int a[n][n];
     cin.ignore();
     string str;
 
-    getline(cin, str);
+    getline(cin, plans);
 
-    vector<string> vec = split(str, " ");
+    // vector<string> vec = split(str, " ");
 
-    for (int i = 0; i < vec.size(); i++)
+    for(int i=0; i<plans.size(); i++)
     {
-        if (vec[i] == "L" && y > 1)
+        char plan = plans[i];
+        
+        int nx = -1, ny = -1;
+
+        for(int j=0; j<4; j++)
         {
-            y -= 1;
+            if(plan == moveTypes[j])
+            {
+                nx = x + dx[j];
+                ny = y + dy[j];
+            }
         }
-        else if (vec[i] == "R" && y < n)
-        {
-            y += 1;
-        }
-        else if (vec[i] == "U" && x > 1)
-        {
-            x -= 1;
-        }
-        else if (vec[i] == "D" && x < n)
-        {
-            x += 1;
-        }
+
+        if(nx < 1 || ny < 1 || nx > n || ny > n) continue;
+        
+        x = nx;
+        y = ny;
     }
 
     cout << x << " " << y << endl;
