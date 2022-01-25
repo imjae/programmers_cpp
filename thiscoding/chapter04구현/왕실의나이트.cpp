@@ -29,7 +29,6 @@ int main()
         int tmpY = y + dy[i];
 
         if(check(tmpX, tmpY, 8)) result++;
-
     }
 
     cout << result << endl;
