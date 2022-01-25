@@ -13,7 +13,6 @@ void vecPrint(vector<int> vec);
 int main()
 {
     vector<int> vec12 = {5, 7, 9, 0, 3, 1, 6, 2, 4, 8};
-    vector<int>& vec = vec12;
     qSort(vec12);
 
     cout << "#############ÃÖÁ¾##############" << endl;
@@ -22,7 +21,7 @@ int main()
     return 0;
 }
 
-void qSort(vector<int>& vec)
+void qSort(vector<int> vec)
 {
     int s = vec.size();
 
