@@ -7,13 +7,15 @@
 
 using namespace std;
 
-int binarySearch(vector<int>& arr, int target, int start, int end)
+int binarySearch(vector<int> &arr, int target, int start, int end)
 {
-  if (start > end) return -1;
+  if (start > end)
+    return -1;
 
   int mid = (start + end) / 2;
 
-  if (arr[mid] == target) return mid;
+  if (arr[mid] == target)
+    return mid;
   else
   {
     if (target > arr[mid])
@@ -41,23 +43,35 @@ int main()
 
   vector<int> r;
 
-  int t = 0;
-  for (int i = arr[n - 1]; i >= arr[0]; i--)
+  int total = 0;
+  int start = 0, end = arr[n - 1];
+  int result = 0;
+
+  cout << start << " | " << end << endl;
+
+  while (start < end)
   {
-    for (int j = 0; j < n; j++)
+    total = 0;
+    int mid = (int)((start + end) / 2);
+
+    for (int i = 0; i < n; i++)
     {
-      int s = arr[j] - i;
-      if (s > 0)
-        t += s;
+      int q = arr[i] - mid;
+      if (q > 0)
+        total += q;
     }
 
-    if (t >= m)
+    if (total == m)
     {
-      cout << "result : " <<  i << endl;
+      result = mid;
       break;
     }
-    t = 0;
+
+    if (total < m) end = mid - 1;
+    else start = mid + 1;
   }
+
+  cout << result << endl;
 
   return 0;
 }
