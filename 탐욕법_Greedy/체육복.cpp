@@ -12,10 +12,8 @@ int solution(int n, vector<int> lost, vector<int> reserve)
     int answer = 0;
     vector<int> result(n, 1);
 
-    for (int i = 0; i < reserve.size(); i++)
-        result[reserve[i] - 1] += 1;
-    for (int i = 0; i < lost.size(); i++)
-        result[lost[i] - 1] -= 1;
+    for (int i : reserve) result[i-1] += 1;
+    for (int i : lost) result[i-1] -= 1;
 
     for (int i = 0; i < n; i++)
     {
@@ -36,8 +34,10 @@ int solution(int n, vector<int> lost, vector<int> reserve)
 
     for (int i = 0; i < n; i++)
     {
-        if(result[i] > 1) answer++;
+        if(result[i] > 0) answer++;
     }
+
+    cout << answer;
 
     return answer;
 }
