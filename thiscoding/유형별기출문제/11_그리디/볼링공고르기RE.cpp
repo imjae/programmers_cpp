@@ -14,7 +14,7 @@ int arr[11];
 int main()
 {
     cin >> n >> m;
-    for (int i = 1; i <= n; i++)
+    for (int i = 0; i <= n; i++)
     {
         int x;
         cin >> x;
@@ -28,8 +28,6 @@ int main()
         n = n - arr[i];
         result = result + arr[i] * n;
     }
-
-    cout << result << endl;
 
     return 0;
 }
